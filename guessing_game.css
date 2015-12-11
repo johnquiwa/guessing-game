@@ -16,3 +16,12 @@ body {
 .well{
     background-color: rgba(245, 245, 245, 0.7);
 }
+
+.buttons{
+	margin-top: 10px;
+}
+
+.playagain{
+	margin-top: 10px;
+	display:none;
+}

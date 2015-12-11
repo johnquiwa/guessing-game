@@ -10,6 +10,8 @@
 		<!-- Latest compiled JavaScript -->
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="guessing_game.css">
+		<script src='guessingGame.js'></script>
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	</head>
 	<body>
 	<div class="container container-table">
@@ -17,15 +19,21 @@
 	       		<div class="text-center col-md-4 col-md-offset-4">
 	       			<div class="well">
 					<h2>Guessing Game</h2>
-					<p></p>
+					<div class="meme"></div>
+					<p class="response"></p>
 					<form>
 						<div class="form-group">
 							<label for="guess">What number am I thinking of?</label>
 							<input type="guess" class="form-control" id="guess">
 						</div>
-						<button type="submit" class="btn btn-default">Submit</button>
-						<button type="button" class="btn btn-success btn-xs">Hint</button>
+						<button type="button" class="btn btn-primary btn btn-block" onclick="playersGuessSubmission();">Submit</button>
+						<div class= "buttons">
+							<button type="button" class="btn btn-success" onclick="provideHint();"> Hint </button>
+						</div>
 					</form>
+						<div class ="playagain">
+							<button type='button' class='btn btn-danger' onclick='playAgain();'>Play Again</button>
+						</div>
 					</div>
 				</div>
 			</div>
