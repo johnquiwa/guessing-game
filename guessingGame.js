@@ -4,7 +4,7 @@
 var winningNumber = generateWinningNumber(1,100);
 var hint1 = generateWinningNumber(1,100);
 var hint2 = generateWinningNumber(1,100);
-var playersGuess = undefined;
+var playersGuess = 0;
 var guessArray = [];
 var guessRemaining = 5;
 
@@ -21,16 +21,18 @@ function generateWinningNumber(min,max){
 
 function playersGuessSubmission(){
 	playersGuess = +$('#guess').val();
-	$('#guess').val('');
 	checkGuess();
+	$('#guess').val('');
 }
 
 // Determine if the next guess should be a lower or higher number
 
 function lowerOrHigher(){
 	if(winningNumber > playersGuess){
+		guessArray.push(playersGuess);
 		return "Your guess is lower than the winning number ";
 	}else if (winningNumber < playersGuess){
+		guessArray.push(playersGuess);
 		return "Your guess is higher than the winning number ";
 	}else 
 		return "";
@@ -62,13 +64,12 @@ function checkGuess(playersGuess){
 	}else {
 		guessRemaining -= 1;
 		
-		if(guessRemaining == 0){
+		if(guessRemaining === 0){
 			$('.response').text("Game Over!");
 			$('.meme').append("<img src='http://i.giphy.com/vy3mYVqIyXpsc.gif'>");
 			$('form').hide();
 			$('.playagain').show();
 		}else {
-			guessArray.push(playersGuess);
 		$('.response').text(lowerOrHigher() + guessMessage() + "\n" + "You have: " + guessRemaining + " remaining guesses.");
 		}
 	}
