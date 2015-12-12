@@ -4,7 +4,6 @@
 var winningNumber = generateWinningNumber(1,100);
 var hint1 = generateWinningNumber(1,100);
 var hint2 = generateWinningNumber(1,100);
-var playersGuess = 0;
 var guessArray = [];
 var guessRemaining = 5;
 
@@ -20,14 +19,14 @@ function generateWinningNumber(min,max){
 // Fetch the Players Guess
 
 function playersGuessSubmission(){
-	playersGuess = +$('#guess').val();
-	checkGuess();
+	var playersGuess = +$('#guess').val();
+	checkGuess(playersGuess);
 	$('#guess').val('');
 }
 
 // Determine if the next guess should be a lower or higher number
 
-function lowerOrHigher(){
+function lowerOrHigher(playersGuess){
 	if(winningNumber > playersGuess){
 		guessArray.push(playersGuess);
 		return "Your guess is lower than the winning number ";
@@ -38,7 +37,7 @@ function lowerOrHigher(){
 		return "";
 }
 
-function guessMessage(){
+function guessMessage(playersGuess){
 	var closeness;
 	if(Math.abs(winningNumber - playersGuess) <= 10){
 		closeness = "and you are within 10 digits!";
@@ -70,7 +69,7 @@ function checkGuess(playersGuess){
 			$('form').hide();
 			$('.playagain').show();
 		}else {
-		$('.response').text(lowerOrHigher() + guessMessage() + "\n" + "You have: " + guessRemaining + " remaining guesses.");
+			$('.response').text(lowerOrHigher(playersGuess) + guessMessage(playersGuess) + "\n" + "You have: " + guessRemaining + " remaining guesses.");
 		}
 	}
 }
